@@ -38,7 +38,7 @@ class IRxmit():
         # Get pigpio handler and set GPIO pin connected to IR LED(s) to output
         self.pi = pigpio.pi(self.__host)
         self.pi.set_mode(self.__pin, pigpio.OUTPUT)
-        if DEBUG: print(f'A pigpio hander on {self.__host} obtained...')
+        if DEBUG: print(f'A pigpio handler on {self.__host} obtained...')
 
         # Define IR subcarrier and frame synthesis parameters
         # AEHA format
@@ -63,7 +63,7 @@ class IRxmit():
         else:
             raise Exception('Unknown format specified.')
 
-        if DEBUG: print(f'{format} specified...')
+        if DEBUG: print(f'{format} format specified...')
 
     # Destructor
     def __del__(self):
@@ -128,7 +128,7 @@ class IRxmit():
 
     # Function to send an AEHA-format IR signal
     def send(self, s):
-        if DEBUG: print(f'Creating a bitstream from the data {s}...')
+        if DEBUG: print(f'Creating a bitstream from the hexadecimal string data {s}...')
         bits = self.get_bitstream(s)
 
         if DEBUG: print(f'Synthesizing a pigpio waveform from the bitstream {bits}...')
