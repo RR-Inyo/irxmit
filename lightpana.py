@@ -31,7 +31,6 @@ class lightPana():
         # Create IR remote control handler
         self.__ir = ir
         if DEBUG: print('IR remote controller handler obtained')
-
     
     # Destructor
     def __del__(self):
