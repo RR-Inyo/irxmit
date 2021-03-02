@@ -37,7 +37,7 @@ def main():
     # Define the IR remote contoller handler
     # IR LEDs connected to GPIO13 through MOSFET
     # NEC format
-    ir = irxmit.IRxmit(13, format = 'NEC')
+    ir = irxmit.IRxmit(13, host = '192.168.1.20', format = 'NEC')
 
     # Define the ceiling light handler
     l = lightNEC(ir)
