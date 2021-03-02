@@ -91,7 +91,6 @@ class IRxmit():
         # Clear wave
         self.__pi.wave_clear()
 
-
         # Generate waveform of leader
         wb = []
         for i in range(0, self.__MARK_CYCLES * self.__N_LEADER_ON):
@@ -200,7 +199,7 @@ class IRxmit():
         wc = [wave]
         return wc
 
-    # Function to synthesize frame
+    # Function to synthesize frame as a wavechain consisting of wave elements created in __synthesize_elements() method
     def __synthesize(self, bits):
         # Create empty wavechain
         wc = []
@@ -221,7 +220,7 @@ class IRxmit():
         # Append trailer
         wc.append(self.__wave_trailer)
         if DEBUG: print(f'Wavechain generated {wc}')
-        
+
         return wc
 
     # Function to send an AEHA-format IR signal
