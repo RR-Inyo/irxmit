@@ -10,7 +10,7 @@ DEBUG = True
 
 # Class of Panasonic ceiling light
 class lightPana():
-    # Define the signals for channel 1, 2, and 3
+    # Define the signals for channels 1, 2, and 3
     __ON    = ['2c62092d24', '2c5209353c', '2c52093d34']
     __OFF   = ['2c52092f26', '2c5209373e', '2c52093f36']
     __FULL  = ['2c52092c25', '2c5209343d', '2c52093c35']
