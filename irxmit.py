@@ -235,7 +235,7 @@ class IRxmit():
             if DEBUG: print('Synthesizing the frame as a wavechain with mutiple waves...')
             wc = self.__synthesize(bits)
 
-        if DEBUG: print(f'Sending the pigpio waveform on GPIO{self.__pin} pin...')
+        if DEBUG: print(f'Sending the pigpio wavechain on GPIO{self.__pin} pin...')
         self.__pi.wave_chain(wc)
 
     def is_busy(self):
@@ -261,19 +261,19 @@ if __name__ == '__main__':
     sigs = ['2c52092e27', '2c52092d24', '2c52092c25']
 
     # Go to night mode
-    ir.send(sig[0])
+    ir.send(sigs[0])
 
     # Wait for 10 seconds
     time.sleep(10)
 
     # Go back to normal mode (on)
-    ir.send(sig[1])
+    ir.send(sigs[1])
 
     # Wait for 10 seconds again
     time.sleep(10)
 
     # Full brightness!
-    ir.send(sig[2])
+    ir.send(sigs[2])
 
     # Release the pigpio after transmission
     while ir.is_busy():
