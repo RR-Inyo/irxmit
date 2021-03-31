@@ -12,7 +12,7 @@
 import pigpio
 
 # For debugging
-DEBUG = True
+DEBUG = False
 SINGLE_WAVE = False
 
 # Explanation on IR subcarrier and frame synthesis parameters:
@@ -21,13 +21,13 @@ SINGLE_WAVE = False
 # The modulation unit, T, shall be 0.35-0.50 ms (typ. 0.425 ms).
 # This program lets the carrier frequency be 38.4615 kHz, or the period be 0.026 ms.
 # Making the modulation unit be 17 cycles of the subcarrier leads to T = 0.442 ms.
-# The leader consists of 8T 'on' (light) and 4T 'off' (dark).
+# The leader consists of 8T 'on' (mark/light) and 4T 'off' (space/dark).
 #
 # In the NEC format, the subcarrier frequency shall be 38 kHz (I do not know tolerance).
 # The modulation unit, T, shall be 0.562 ms (I do not know the tolerance).
 # This program lets the carrier frequency be 38.4615 kHz, or the period be 0.026 ms.
 # Making the modulation unit, T, be 22 cycles of the subcarrier leads to T = 0.572 ms (longer by 1.7%).
-# The leader consists of 16T 'on' (light) and 8T 'off' (dark).
+# The leader consists of 16T 'on' (mark/light) and 8T 'off' (space/dark).
 
 # Class of IR transmitter
 class IRxmit():
@@ -208,13 +208,14 @@ class IRxmit():
         wc.append(self.__wave_leader)
 
         # Append data
-        # If there is a '+' in the input string, a leader pulse is added to directly connect frames.
+        # If there is a '+' in the input string, a trailer and a leader pulse is added to directly connect frames.
         for bit in bits:
             if bit == '0':
                 wc.append(self.__wave_data_0)
             if bit == '1':
                 wc.append(self.__wave_data_1)
             if bit == '+':
+                wc.append(self.__wave_trailer)
                 wc.append(self.__wave_leader)
 
         # Append trailer
